@@ -10,6 +10,7 @@
     --button-hover-color:#FFFFFF;
     --icons-customer-color:#AFB1B8;
     --icon-secondery-hover-color: #31D0AA;
+    --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Основні характеристики body, logo... */
@@ -63,6 +64,10 @@ img {
     display: flex;
 }
 
+body.overflow {
+    overflow: hidden;
+}
+
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -70,6 +75,12 @@ img {
     padding-left: 15px;
     padding-right: 15px;
     /*outline: 2px solid rgb(72, 21, 255);*/
+}
+
+.is-hidden{
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
 }
 
 .logo {
@@ -102,10 +113,42 @@ img {
 .nav-link,
 .address-link,
 .logo-link {
-    display: inline-block;
+    /* display: inline-block; */
+    display: block;
 
     padding-top: 24px;
     padding-bottom: 24px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--hover-color);
+}
+
+.nav-link{
+    position: relative;
+    transition: color 250ms var(--cubic);
+}
+
+/* .nav-link::after {
+    /* display: block; */
+    position: absolute;
+    content: "";
+    /* margin: auto; */
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    left: 0;
+    bottom: 0;
+    color: var(--hover-color);
+    margin-top: 20px; */
+}
+
+.nav-link::after {
+    content: "";
+    font-size: 10px;
+    color: var(--hover-color);
+    display: block;
 }
 
 .logo-link{
@@ -128,6 +171,8 @@ img {
 .site-nav .current {
     color: var(--hover-color);
 }
+
+.current {}
 
 .site-addres a {
 color: var(--primary-text-color);
@@ -425,11 +470,49 @@ font-style: normal;
     display: flex;
     align-items: center;
     justify-content: center;
-     background-color: var(--primary-text-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .footer-link-icon{
     fill: var(--secondary-bg-color);
+}
+
+/* modal */
+
+.backdrop{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(46, 47, 66, 0.4);;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+}
+
+
+.modal{
+    width: 500px;
+    max-width: 100%;
+    min-height: 600px;
+    background-color: var(--primary-bg-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-battom{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #E7E9FC;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 24px;
+    right: 24px;
 }
 
 /*Portfolio*/
@@ -469,9 +552,40 @@ font-style: normal;
 
 .portfolio-link:hover .card-signature,
 .portfolio-link:focus .card-signature {
-    border: 1px solid #F4F4FD;
+    border: 1px solid var(--secondary-bg-color);
     border-top: none;
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.project-hover-block{
+    position: relative;
+    overflow: hidden;
+}
+
+.project-hover-text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--secondary-bg-color);
+    padding-top: 40px;
+    padding-right: 32px;
+    padding-left: 32px;
+    background-color: var(--accent-text-color);
+    width: 100%;
+    height: 100%;
+    transform: translateY(101%);
+    transition: transform 250ms var(--cubic);
+    
+}
+
+.project-img{
+    width: 100%;
+}
+
+.portfolio-link:hover .project-hover-text,
+.portfolio-link:focus .project-hover-text{
+    transform: translateY(0);
+    
 }
 
 /* Стилістика і правки*/
